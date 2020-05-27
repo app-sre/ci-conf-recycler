@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+cfg-test.yaml
+cfg-test-v4.yaml

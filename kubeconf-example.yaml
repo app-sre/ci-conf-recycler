@@ -1,0 +1,18 @@
+apiVersion: v1                                                                  
+clusters:                                                                       
+- cluster:                                                                      
+    server: https://KUBE_SERVER
+  name: KUBE_SERVER_DASHIFY
+contexts:                                                                       
+- context:                                                                      
+    cluster: KUBE_SERVER_DASHIFY
+    namespace: NAMESPACE
+    user: system:serviceaccount:NAMESPACE:SA_NAME/KUBE_SERVER_DASHIFY
+  name: NAMESPACE/KUBE_SERVER_DASHIFY/system:serviceaccount:NAMESPACE:SA_NAME
+current-context: NAMESPACE/KUBE_SERVER_DASHIFY/system:serviceaccount:NAMESPACE:SA_NAME
+kind: Config                                                                    
+preferences: {}                                                                 
+users:                                                                          
+- name: system:serviceaccount:NAMESPACE:SA_NAME/KUBE_SERVER_DASHIFY
+  user:                                                                         
+   token: KUBE_TOKEN
