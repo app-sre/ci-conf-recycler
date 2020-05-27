@@ -30,6 +30,7 @@ CONTEXT = os.getenv('CONTEXT') or 'dummyapp'
 ENVIRONMENT = os.getenv('ENVIRONMENT') or 'production'
 KUBECONF_EXT = os.getenv('KUBECONFVER')
 SA_NAME = os.getenv('SA_NAME') or 'deploybot'
+KUBEHOME = os.getenv('KUBEHOME') or '/home/invalid/.kube'
 
 NAMESPACE = os.getenv('NAMESPACE') or CONTEXT + '-' + ENVIRONMENT
 KUBE_SERVER_DASHED = str(KUBE_SERVER).replace(".", "-").replace("https://","")
@@ -59,9 +60,9 @@ kubeconf['current-context'] = context_name_fmt.format(NAMESPACE,
                                                       NAMESPACE, SA_NAME)
 
 if KUBECONF_EXT:
-  outfile = "cfg-{}-{}.yaml".format(CONTEXT,KUBECONF_EXT)
+  outfile = "{}/cfg-{}-{}".format(KUBEHOME, CONTEXT, KUBECONF_EXT)
 else:
-  outfile = "cfg-{}-new.yaml".format(CONTEXT)
+  outfile = "{}/cfg-{}-new".format(KUBEHOME, CONTEXT)
 
 print("Writing kube config out to \"{}\"...".format(outfile))
 with open(outfile, 'wb') as stream:
